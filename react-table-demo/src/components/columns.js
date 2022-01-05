@@ -1,12 +1,13 @@
 import { format } from 'date-fns';
 import { SelectColumnFilter } from './ColumnFilter';
+import { CustomFilter } from './CustomFilter';
 
 export const COLUMNS = [
   {
     Header: 'Id',
     Footer: 'Id',
     accessor: 'id',
-    // Filter: SelectColumnFilter,
+
     disableFilters: true,
   },
   {
@@ -19,7 +20,7 @@ export const COLUMNS = [
     Header: 'Last Name',
     Footer: 'Last Name',
     accessor: 'last_name',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
   },
   {
     Header: 'Date of Birth',
@@ -41,6 +42,12 @@ export const COLUMNS = [
     Footer: 'Phone',
     accessor: 'phone',
     // Filter: SelectColumnFilter,
+  },
+  {
+    Header: 'Age',
+    Footer: 'Age',
+    accessor: 'age',
+    Filter: CustomFilter,
   },
 ];
 
