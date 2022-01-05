@@ -6,13 +6,14 @@ export const COLUMNS = [
     Header: 'Id',
     Footer: 'Id',
     accessor: 'id',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
+    disableFilters: true,
   },
   {
     Header: 'First Name',
     Footer: 'First Name',
     accessor: 'first_name',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
   },
   {
     Header: 'Last Name',
@@ -24,7 +25,7 @@ export const COLUMNS = [
     Header: 'Date of Birth',
     Footer: 'Date of Birth',
     accessor: 'date_of_birth',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
     Cell: ({ value }) => {
       return format(new Date(value), 'dd/MM/yyyy');
     },
@@ -33,13 +34,13 @@ export const COLUMNS = [
     Header: 'Country',
     Footer: 'Country',
     accessor: 'country',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
   },
   {
     Header: 'Phone',
     Footer: 'Phone',
     accessor: 'phone',
-    Filter: SelectColumnFilter,
+    // Filter: SelectColumnFilter,
   },
 ];
 

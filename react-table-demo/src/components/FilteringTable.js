@@ -4,13 +4,20 @@ import MOCK_DATA from './MOCK_DATA';
 import { COLUMNS } from './columns';
 import './table.css';
 import { GlobalFilter } from './GlobalFilter';
+import { SelectColumnFilter } from './ColumnFilter';
 
-export const FilteringTable = ({ header = null }) => {
+export const FilteringTable = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
 
+  const defaultColumn = useMemo(() => {
+    return {
+      Filter: SelectColumnFilter,
+    };
+  }, []);
+
   const instance = useTable(
-    { columns, data },
+    { columns, data, defaultColumn },
     useFilters,
     useGlobalFilter,
     useSortBy
