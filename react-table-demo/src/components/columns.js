@@ -1,33 +1,45 @@
+import { format } from 'date-fns';
+import { SelectColumnFilter } from './ColumnFilter';
+
 export const COLUMNS = [
   {
     Header: 'Id',
     Footer: 'Id',
     accessor: 'id',
+    Filter: SelectColumnFilter,
   },
   {
     Header: 'First Name',
     Footer: 'First Name',
     accessor: 'first_name',
+    Filter: SelectColumnFilter,
   },
   {
     Header: 'Last Name',
     Footer: 'Last Name',
     accessor: 'last_name',
+    Filter: SelectColumnFilter,
   },
   {
     Header: 'Date of Birth',
     Footer: 'Date of Birth',
     accessor: 'date_of_birth',
+    Filter: SelectColumnFilter,
+    Cell: ({ value }) => {
+      return format(new Date(value), 'dd/MM/yyyy');
+    },
   },
   {
     Header: 'Country',
     Footer: 'Country',
     accessor: 'country',
+    Filter: SelectColumnFilter,
   },
   {
     Header: 'Phone',
     Footer: 'Phone',
     accessor: 'phone',
+    Filter: SelectColumnFilter,
   },
 ];
 
