@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo } from 'react';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, useRowSelect } from 'react-table';
 import MOCK_DATA from './MOCK_DATA';
 import { COLUMNS } from './columns';
 import './table.css';
+import { Checkbox } from './Checkbox';
 
 export const PaginationTable = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -24,6 +25,8 @@ export const PaginationTable = () => {
 
     state,
     prepareRow,
+    selectedFlatRows,
+    isAllRowsSelected,
   } = useTable(
     {
       columns,
@@ -31,7 +34,32 @@ export const PaginationTable = () => {
       // manualPagination: true,
       // initialState: { pageIndex: 2 }
     },
-    usePagination
+
+    usePagination,
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        // Let's make a column for selection
+        {
+          id: 'selection',
+          // The header can use the table's getToggleAllRowsSelectedProps method
+          // to render a checkbox
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <Checkbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          // The cell can use the individual row's getToggleRowSelectedProps method
+          // to the render a checkbox
+          Cell: ({ row }) => (
+            <div>
+              <Checkbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    }
   );
 
   const { pageIndex, pageSize } = state;
@@ -43,6 +71,14 @@ export const PaginationTable = () => {
   useMemo(() => {
     console.log(pageIndex, pageSize);
   }, [pageIndex]);
+
+  useMemo(() => {
+    const selectedRows = selectedFlatRows.map((d) => d.original);
+
+    console.log(isAllRowsSelected);
+
+    console.log(selectedRows);
+  }, [selectedFlatRows]);
 
   return (
     <>
@@ -118,6 +154,18 @@ export const PaginationTable = () => {
           {'>>'}
         </button>
       </div>
+
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedFlatRows: selectedFlatRows.map((d) => d.original),
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
     </>
   );
 };
