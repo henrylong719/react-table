@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { OutsideFilteringTable } from './components/OutsideFilterTable';
 import { CustomFilter } from './components/CustomFilter';
 import { PaginationTable } from './components/PaginationTable';
+import { SetColumnOrderTable } from './components/SetColumnOrderTable';
 
 function App() {
   const [age, setAge] = useState(0);
@@ -22,7 +23,7 @@ function App() {
           setAge(e.target.value);
         }}
       /> */}
-      <PaginationTable />
+      <SetColumnOrderTable />
     </div>
   );
 }
