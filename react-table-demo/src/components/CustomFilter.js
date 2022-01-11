@@ -12,15 +12,8 @@
 //   column: { filterValue, setFilter, preFilteredRows, id },
 // }) {}
 
-import React from 'react';
-
-export const CustomFilter = ({
-  column: { filterValue, setFilter, preFilteredRows },
-}) => {
-  return preFilteredRows.filter((row) => row.original.age >= filterValue);
-
-  console.log(preFilteredRows);
-  return <div></div>;
+export const CustomFilter = ({ column: { filterValue, preFilteredRows } }) => {
+  return preFilteredRows.filter((row) => row.original.age === filterValue);
 };
 
 // export function SelectColumnFilter({

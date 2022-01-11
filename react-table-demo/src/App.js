@@ -12,18 +12,34 @@ import { SetColumnOrderTable } from './components/SetColumnOrderTable';
 
 function App() {
   const [age, setAge] = useState(0);
-
   return (
     <div className="App">
-      {/* <p>Min age is {age}</p>
-      <input
+      <p>Min age is {age}</p>
+
+      <select
+        value={age}
+        onChange={(e) => {
+          setAge(e.target.value);
+        }}
+      >
+        <option value="">All</option>
+        <option key={1} value={38}>
+          38
+        </option>
+
+        <option key={2} value={39}>
+          39
+        </option>
+      </select>
+
+      {/* <input
         type="range"
         value={age}
         onChange={(e) => {
           setAge(e.target.value);
         }}
       /> */}
-      <SetColumnOrderTable />
+      <FilteringTable customerFilterData={{ id: 'age', data: age }} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useTable, useSortBy, useGlobalFilter, useFilters } from 'react-table';
 import MOCK_DATA from './MOCK_DATA';
 import { COLUMNS } from './columns';
@@ -6,7 +6,7 @@ import './table.css';
 import { GlobalFilter } from './GlobalFilter';
 import { SelectColumnFilter } from './ColumnFilter';
 
-export const FilteringTable = () => {
+export const FilteringTable = ({ customerFilterData }) => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
 
@@ -33,9 +33,16 @@ export const FilteringTable = () => {
     // for global filter
     state,
     setGlobalFilter,
+    setFilter,
   } = instance;
 
   const { globalFilter } = state;
+
+  useEffect(() => {
+    console.log(customerFilterData);
+    // This will now use our custom filter for age
+    setFilter(customerFilterData.id, customerFilterData.data);
+  }, [customerFilterData]);
 
   return (
     <>

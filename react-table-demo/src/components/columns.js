@@ -2,6 +2,10 @@ import { format } from 'date-fns';
 import { SelectColumnFilter } from './ColumnFilter';
 import { CustomFilter } from './CustomFilter';
 
+// Use a custom filter function
+const customFilterFunction = (rows, id, filterValue) =>
+  rows.filter((row) => row.original.age >= filterValue);
+
 export const COLUMNS = [
   {
     Header: 'Id',
